@@ -25,6 +25,6 @@ char	**get_options(char *av);
 
 char	*get_path(char *ep[]);
 
-char	*get_access_path(char *path, char *cmd);
+char	*get_access_path(char *ep[], char *cmd);
 
 #endif

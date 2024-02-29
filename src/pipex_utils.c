@@ -27,21 +27,15 @@ void	check(char *msg, int error_code)
 t_cmd	*get_instance(char *ep[], char *file, char *r_cmd, char **opts)
 {
 	t_cmd	*cmd;
-	char	*path;
-	char	*access_path;
 
-	path = get_path(ep);
-	if (!path || !*path)
-		return (NULL);
 	cmd = (t_cmd *) malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	access_path = get_access_path(path, r_cmd);
 	cmd->file = file;
 	cmd->cmd = r_cmd;
 	cmd->opts = opts;
 	cmd->envp = ep;
-	cmd->access_path = access_path;
+	cmd->access_path = get_access_path(ep, r_cmd);
 	return (cmd);
 }
 
@@ -91,6 +85,8 @@ void	run_commands(t_cmd *f_cmd, t_cmd *n_cmd)
 {
 	int	fds[2];
 
+	if (!f_cmd || !n_cmd)
+		return ;
 	check("Error when using pipe", pipe(fds));
 	check("Error piping[0]", fds[0]);
 	check("Error piping[1]", fds[1]);

@@ -36,6 +36,8 @@ void	run(char *av[], char *ep[])
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	if (!argv || !envp)
+		exit(EXIT_FAILURE);
 	if (argc == 5 && *argv[1] && *argv[2] && *argv[3] && *argv[4])
 	{
 		run(argv, envp);
@@ -46,5 +48,4 @@ int	main(int argc, char *argv[], char *envp[])
 			"./pipex [infile] [cmd1] [cmd1] [outfile]\n");
 	check("Error unlinking file", unlink(argv[1]));
 	check("Error unlinking file", unlink(argv[4]));
-	exit (EXIT_SUCCESS);
 }

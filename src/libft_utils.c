@@ -97,12 +97,10 @@ char	*join(char *s1, char *s2)
 	size_t	j;
 
 	if (!s1)
-		return (strdup(s2));
-	if (!s2)
-		return (strdup(s1));
+		return (NULL);
 	str = malloc(strlen(s1) + strlen(s2) + 1);
 	if (!str)
-		return (free(s1), NULL);
+		return (NULL);
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];
