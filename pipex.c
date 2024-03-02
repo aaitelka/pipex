@@ -32,10 +32,24 @@ void	run(char *av[], char *ep[])
 			get_command(av[3]),
 			get_options(av[3]));
 	run_commands(first_cmd, next_cmd);
+	free(first_cmd->cmd);
+	free(first_cmd->opts);
+	free(first_cmd->access_path);
+	free(first_cmd);
+	free(next_cmd->cmd);
+	free(next_cmd->opts);
+	free(next_cmd->access_path);
+	free(next_cmd);
+}
+
+void leaks()
+{
+	system("leaks pipex");
 }
 
 int	main(int argc, char *argv[], char *envp[])
 {
+	atexit(leaks);
 	if (!argv || !envp)
 		exit(EXIT_FAILURE);
 	if (argc == 5 && *argv[1] && *argv[2] && *argv[3] && *argv[4])

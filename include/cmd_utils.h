@@ -13,11 +13,7 @@
 #ifndef CMD_UTILS_H
 # define CMD_UTILS_H
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <unistd.h>
+# include "../libft/libft.h"
 
 char	*get_command(const char *arg);
 

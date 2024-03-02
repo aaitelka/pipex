@@ -11,31 +11,42 @@
 # **************************************************************************** #
 
 NAME	:=	pipex
-HEAD	:=	include/pipex.h \
-			include/cmd_utils.h \
-			include/libft_utils.h \
-			include/pipex_utils.h
+
+LIBFT	:=	libft
+
 CC		:=	cc
+
 CFLAGS	:=	-Wall -Wextra -Werror
+
 RM		:=	rm -rf
-SRC		:=	pipex.c \
+
+INCLUDE	:=	include/pipex.h \
+			include/cmd_utils.h \
+			include/pipex_utils.h
+
+SRCS	:=	pipex.c \
 			src/cmd_utils.c \
-			src/libft_utils.c \
 			src/pipex_utils.c
-OBJ		:=	$(SRC:%c=%o)
 
-all	: $(NAME)
+OBJS	:=	$(SRCS:%c=%o)
 
-%o	: %c $(HEAD)
-	$(CC) $(CFLAGS) $< -c $@
+all		: $(LIBFT) $(NAME)
 
-$(NAME)	: $(OBJ) $(HEAD)
-	$(CC) $(CFLAGS) $^ -o $@
+%o		: %c  $(INCLUDE)
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+$(LIBFT)	:
+	$(MAKE) -C $(LIBFT)
+
+$(NAME)	: $(OBJS)
+	$(CC) $(CFLAGS) $(LIBFT)/libft.a $^ -o $@
 
 clean	:
-	$(RM) $(OBJ)
+	@$(MAKE) -C $(LIBFT) clean
+	$(RM) $(OBJS)
 
 fclean	: clean
+	@$(MAKE) -C $(LIBFT) fclean
 	$(RM) $(NAME)
 
 re	: fclean all

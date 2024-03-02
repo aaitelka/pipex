@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/cmd_utils.h"
-#include "../include/libft_utils.h"
 
 char	*get_command(const char *arg)
 {
@@ -61,8 +60,8 @@ char	*get_path(char *ep[])
 		return (NULL);
 	while (*ep)
 	{
-		if (strncmp(*ep, "PATH=", 5) == 0)
-			return (strchr(*ep, '=') + 1);
+		if (ft_strncmp(*ep, "PATH=", 5) == 0)
+			return (ft_strchr(*ep, '=') + 1);
 		ep++;
 	}
 	return (NULL);
@@ -78,12 +77,12 @@ char	*get_access_path(char *ep[], char *cmd)
 	if (!ep || !cmd)
 		return (NULL);
 	dirs = ft_split(get_path(ep), ':');
-	cmd = join("/", cmd);
+	cmd = ft_strjoin("/", cmd);
 	while (*dirs)
 	{
-		path = join(*dirs, cmd);
+		path = ft_strjoin(*dirs, cmd);
 		if (access(path, X_OK) == 0)
-			return (free(cmd), path);
+			return (free(*dirs), free(cmd), path);
 		free(path);
 		dirs++;
 	}
