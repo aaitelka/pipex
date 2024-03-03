@@ -90,8 +90,8 @@ void	run_commands(t_cmd *f_cmd, t_cmd *n_cmd)
 	check("Error when using pipe", pipe(fds));
 	check("Error piping[0]", fds[0]);
 	check("Error piping[1]", fds[1]);
-	run_first(f_cmd, fds);
 	run_next(n_cmd, fds);
+	run_first(f_cmd, fds);
 	check("Error when waiting child process", wait(NULL));
 	check("Error closing fd", close(fds[0]));
 	check("Error closing fd", close(fds[1]));

@@ -30,23 +30,21 @@ SRCS	:=	pipex.c \
 
 OBJS	:=	$(SRCS:%c=%o)
 
-all		: $(LIBFT) $(NAME)
+all		: $(NAME)
 
 %o		: %c  $(INCLUDE)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-$(LIBFT)	:
-	$(MAKE) -C $(LIBFT)
-
 $(NAME)	: $(OBJS)
+	$(MAKE) -C $(LIBFT)
 	$(CC) $(CFLAGS) $(LIBFT)/libft.a $^ -o $@
 
 clean	:
-	@$(MAKE) -C $(LIBFT) clean
+	$(MAKE) -C $(LIBFT) clean
 	$(RM) $(OBJS)
 
 fclean	: clean
-	@$(MAKE) -C $(LIBFT) fclean
+	$(MAKE) -C $(LIBFT) fclean
 	$(RM) $(NAME)
 
 re	: fclean all

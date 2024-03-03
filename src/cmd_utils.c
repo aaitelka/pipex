@@ -12,6 +12,15 @@
 
 #include "../include/cmd_utils.h"
 
+//void	clear(char **strs)
+//{
+//	if (!strs)
+//		return ;
+//	while (*strs)
+//		free(*strs);
+//	free(strs);
+//}
+
 char	*get_command(const char *arg)
 {
 	char	*cmd;
@@ -76,13 +85,15 @@ char	*get_access_path(char *ep[], char *cmd)
 	dirs = NULL;
 	if (!ep || !cmd)
 		return (NULL);
+//	if (cmd[0] != '\"' || cmd[0] != '\'')
+//		return (cmd);
 	dirs = ft_split(get_path(ep), ':');
 	cmd = ft_strjoin("/", cmd);
 	while (*dirs)
 	{
 		path = ft_strjoin(*dirs, cmd);
 		if (access(path, X_OK) == 0)
-			return (free(*dirs), free(cmd), path);
+			return (free(cmd), path);
 		free(path);
 		dirs++;
 	}
