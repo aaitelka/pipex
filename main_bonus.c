@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/22 22:24:47 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/22 23:02:52 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,7 @@ bool	is_quot(char c)
 	return (c == 34 || c == 39);
 }
 
-int get_next_occurenc(char *str, int start, char c)
+int get_substr_len(char *str, int start, char c)
 {
 	int len = 0;
 
@@ -297,7 +297,7 @@ char **realoc_array(char **arr, char *str, int len)
 	int		i;
 	char	**new_arr;
 
-	new_arr = malloc(len + 2 * sizeof(char*));
+	new_arr = malloc((len + 2 )* sizeof(char*));
 	if (!new_arr)
 		return (NULL);
 	i = 0;
@@ -311,7 +311,7 @@ char **realoc_array(char **arr, char *str, int len)
 	new_arr[i + 1] = NULL;
 	ft_printf("in realloc len = %d\n", arr_len(new_arr));
 	// clear_arr(arr);
-	printf ("new ======> %p\n",&new_arr);
+	printf ("new ======> %p\n",new_arr);
 	return (new_arr);
 }
 bool is_space(char c)
@@ -319,15 +319,34 @@ bool is_space(char c)
 	return ((c >= 9 && c <= 13) || c == 32);
 }
 
-void l(){system("leaks pipex");}
+
+void tokenizer(char *str, char *result, char c, int *i)
+{
+	char *sub;
+	char *temp;
+	int len;
+
+	len = get_substr_len(str, *i + 1, c);
+	if(len == -1)
+	{
+		printf("Error\n");
+		exit (EXIT_FAILURE);
+	}
+	sub = ft_substr(str, *i + 1, len);
+	temp = result;
+	result = ft_strjoin(temp, sub);
+	free(temp);
+	temp = NULL;
+	i += (len + 1);
+}
+
+// void l(){system("leaks a.out");}
 int main(int ac, char *av[], char *ep[])
 {
-	atexit(l);
-	char str1[] = "h'a\"l'em  dada ddd";
+	// atexit(l);
+	char str1[] = "h'a\"l'em  dada ddd\"g '  gg\"dd end  ";
 
-	char **commands = malloc(sizeof(char *));
-	commands[0] = NULL;
-//	int size = sizeof(commands) /sizeof(commands[0]);
+	char **commands = NULL;
 	char *result = NULL;
 	char *temp = NULL;
 	char **temp2;
@@ -335,7 +354,6 @@ int main(int ac, char *av[], char *ep[])
 	int i = 0;
 	int len = 0;
 
-	ft_printf("arr len = %d\n", arr_len(commands));
 	while (str1[i])
 	{
 		if (!is_space(str1[i]) && !is_quot(str1[i]))
@@ -345,7 +363,12 @@ int main(int ac, char *av[], char *ep[])
 				result = realoc_char(result, str1[i], 0);
 		else if (str1[i] == SINGLE)
 		{
-			len = get_next_occurenc(str1, i + 1, SINGLE);
+			len = get_substr_len(str1, i + 1, SINGLE);
+			if(len == -1)
+			{
+				printf("Error\n");
+				exit (EXIT_FAILURE);
+			}
 			sub = ft_substr(str1, i + 1, len);
 			temp = result;
 			result = ft_strjoin( temp, sub);
@@ -355,7 +378,12 @@ int main(int ac, char *av[], char *ep[])
 		}
 		else if (str1[i] == DOUBLE)
 		{
-			len = get_next_occurenc(str1, i + 1, DOUBLE);
+			len = get_substr_len(str1, i + 1, DOUBLE);
+			if(len == -1)
+			{
+				printf("Error\n");
+				exit (EXIT_FAILURE);
+			}
 			sub = ft_substr(str1, i + 1, len);
 			temp = result;
 			result = ft_strjoin( temp, sub);
@@ -364,7 +392,6 @@ int main(int ac, char *av[], char *ep[])
 			i += (len + 1);
 		} else if (is_space(str1[i]))
 		{
-			ft_printf("arr len = %d\n", arr_len(commands));
 			if (result)
 			{
 				temp2 = commands;
@@ -373,8 +400,6 @@ int main(int ac, char *av[], char *ep[])
 				temp2 = NULL;
 				printf ("======> %p\n",&commands);
 			}
-			else
-				ft_printf("result nul\ni = %d\n", i);
 			free(result);
 			result = NULL;
 		}
@@ -387,16 +412,12 @@ int main(int ac, char *av[], char *ep[])
 				clear_arr (temp2);
 				temp2 = NULL;
 	}
-//	free(result);
-//	result = NULL;
-	ft_printf("cmd - %s\n", commands[2]);
-//	int start = (i0nt)(ft_strchr(str1, SINGLE) - str1);
-//	ft_printf("%d\n", start);star
-//	int len = get_next_occurenc(str1, start + 1, SINGLE);
-//	ft_printf("len = %d\n", len);
-//	ft_printf("%s\n", sub);
-//	char *res = NULL;
-//	char *word = ft_strjoin(res, sub);
-//	ft_printf("word = %s\n", word);
+	
+	int l = 0;
+	while (commands[l])
+	{
+		ft_printf("cmd %d : %s\n", l, commands[l]);
+		l++;
+	}
 	return 0;
 }
