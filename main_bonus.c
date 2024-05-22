@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/19 16:57:58 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/22 22:24:47 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 # define SINGLE '\''
 # define DOUBLE '\"'
 
-bool	is_quot(char c)
-{
-	return (c == 34 || c == 39);
-}
+
 //int size_at(const char *str, char c)
 //{
 //	int len;
@@ -29,27 +26,27 @@ bool	is_quot(char c)
 //	return (len);
 //}
 //
-int size_from(char *str, char c)
-{
-	int len;
-	bool b;
+// int size_from(char *str, char c)
+// {
+// 	int len;
+// 	bool b;
 
-	len = 0;
-	b = false;
-	str = ft_strchr(str, c);
-	if (!str)
-		return (len);
-	str++;
-	while (str[len])
-	{
-		if (str[len] == c)
-			b = true;
-		if (b &&  str[len + 1] == ' ')
-			break;
-		len++;
-	}
-	return (len);
-}
+// 	len = 0;
+// 	b = false;
+// 	str = ft_strchr(str, c);
+// 	if (!str)
+// 		return (len);
+// 	str++;
+// 	while (str[len])
+// 	{
+// 		if (str[len] == c)
+// 			b = true;
+// 		if (b &&  str[len + 1] == ' ')
+// 			break;
+// 		len++;
+// 	}
+// 	return (len);
+// }
 //
 //static char *get_command(const char *arg)
 //{
@@ -165,11 +162,11 @@ int size_from(char *str, char c)
 //	lst = NULL;
 //}
 //
-void skip(char **str, char c)
-{
-	while (**str == c)
-		str[0]++;
-}
+// void skip(char **str, char c)
+// {
+// 	while (**str == c)
+// 		str[0]++;
+// }
 //
 //void destroy(t_pipex *pipex)
 //{
@@ -214,6 +211,11 @@ void skip(char **str, char c)
 //	system("leaks pipex");
 //}
 
+bool	is_quot(char c)
+{
+	return (c == 34 || c == 39);
+}
+
 int get_next_occurenc(char *str, int start, char c)
 {
 	int len = 0;
@@ -228,22 +230,173 @@ int get_next_occurenc(char *str, int start, char c)
 	return (-1);
 }
 
+
+void count_occur(char *str, int *single, int *dauble)
+{
+	*single = 0;
+	*dauble = 0;
+	while (*str)
+	{
+		if (*str == SINGLE)
+			*single += 1;
+		else if (*str == DOUBLE)
+			*dauble += 1;
+		str++;
+	}
+}
+// 'gre"p'
+
+void	clear_arr(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+char *realoc_char(char *str, char c, int len)
+{
+	int		i;
+	char	*new_str;
+
+	new_str = malloc(len + 2);
+	if (!new_str)
+		return (NULL);
+	i = 0;
+	while (len && str[i])
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	new_str[i] = c;
+	new_str[i + 1] = '\0';
+	if (len)
+		free(str);
+	return (new_str);
+}
+
+int arr_len(char **arr)
+{
+	int len;
+
+	len = 0;
+	while (arr && arr[len])
+		len++;
+	return (len);
+}
+
+char **realoc_array(char **arr, char *str, int len)
+{
+	int		i;
+	char	**new_arr;
+
+	new_arr = malloc(len + 2 * sizeof(char*));
+	if (!new_arr)
+		return (NULL);
+	i = 0;
+	while (len && arr[i])
+	{
+		new_arr[i] = ft_strdup(arr[i]);
+		i++;
+	}
+	new_arr[i] = ft_strdup(str);
+	ft_printf("==> %s | %s\n",str, new_arr[i]);
+	new_arr[i + 1] = NULL;
+	ft_printf("in realloc len = %d\n", arr_len(new_arr));
+	// clear_arr(arr);
+	printf ("new ======> %p\n",&new_arr);
+	return (new_arr);
+}
+bool is_space(char c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
+void l(){system("leaks pipex");}
 int main(int ac, char *av[], char *ep[])
 {
+	atexit(l);
+	char str1[] = "h'a\"l'em  dada ddd";
 
+	char **commands = malloc(sizeof(char *));
+	commands[0] = NULL;
+//	int size = sizeof(commands) /sizeof(commands[0]);
+	char *result = NULL;
+	char *temp = NULL;
+	char **temp2;
+	char *sub;
+	int i = 0;
+	int len = 0;
 
-	char *str = ft_strtrim(av[2], " ");
-
-	int start = (int) ((ft_strchr(str, SINGLE)) - str);
-	ft_printf("len = %d\n", start);
-
-	int len = get_next_occurenc(str, start + 1, SINGLE);
-
-	char *sub = ft_substr(str, start + 1, len);
-	char *s1 = NULL;
-	char *s = ft_strjoin(s1, sub);
-
-	ft_printf("command and options => %s\n", s);
-
+	ft_printf("arr len = %d\n", arr_len(commands));
+	while (str1[i])
+	{
+		if (!is_space(str1[i]) && !is_quot(str1[i]))
+			if (result)
+				result = realoc_char(result, str1[i], (int)ft_strlen(result));
+			else
+				result = realoc_char(result, str1[i], 0);
+		else if (str1[i] == SINGLE)
+		{
+			len = get_next_occurenc(str1, i + 1, SINGLE);
+			sub = ft_substr(str1, i + 1, len);
+			temp = result;
+			result = ft_strjoin( temp, sub);
+			free(temp);
+			temp = NULL;
+			i += (len + 1);
+		}
+		else if (str1[i] == DOUBLE)
+		{
+			len = get_next_occurenc(str1, i + 1, DOUBLE);
+			sub = ft_substr(str1, i + 1, len);
+			temp = result;
+			result = ft_strjoin( temp, sub);
+			free(temp);
+			temp = NULL;
+			i += (len + 1);
+		} else if (is_space(str1[i]))
+		{
+			ft_printf("arr len = %d\n", arr_len(commands));
+			if (result)
+			{
+				temp2 = commands;
+				commands = realoc_array(commands, result, arr_len(commands));
+				clear_arr (temp2);
+				temp2 = NULL;
+				printf ("======> %p\n",&commands);
+			}
+			else
+				ft_printf("result nul\ni = %d\n", i);
+			free(result);
+			result = NULL;
+		}
+		i++;
+	}
+	if (result)
+	{
+		temp2 = commands;
+				commands = realoc_array(commands, result, arr_len(commands));
+				clear_arr (temp2);
+				temp2 = NULL;
+	}
+//	free(result);
+//	result = NULL;
+	ft_printf("cmd - %s\n", commands[2]);
+//	int start = (i0nt)(ft_strchr(str1, SINGLE) - str1);
+//	ft_printf("%d\n", start);star
+//	int len = get_next_occurenc(str1, start + 1, SINGLE);
+//	ft_printf("len = %d\n", len);
+//	ft_printf("%s\n", sub);
+//	char *res = NULL;
+//	char *word = ft_strjoin(res, sub);
+//	ft_printf("word = %s\n", word);
 	return 0;
 }
