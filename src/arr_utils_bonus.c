@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   arr_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/23 16:43:32 by aaitelka         ###   ########.fr       */
+/*   Created: 2024/05/23 14:37:00 by aaitelka          #+#    #+#             */
+/*   Updated: 2024/05/23 15:07:40 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/pipex_bonus.h"
+#include "../include/pipex_bonus.h"
 
-void l(){system("leaks a.out");}
-int main(int ac, char *av[], char *ep[])
+int get_size(char **arr)
 {
-	atexit(l);
-	char *str1 = ft_strtrim(av[1], " ");
+	int len;
 
-	
-	char **commands = parse_commands(str1);
-	int l = 0;
-	while (commands[l])
+	len = 0;
+	while (arr && arr[len])
+		len++;
+	return (len);
+}
+
+void	clear_arr(char **map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	i = 0;
+	while (map[i])
 	{
-		ft_printf("cmd %d : %s\n", l, commands[l]);
-		l++;
+		free(map[i]);
+		i++;
 	}
-	clear_arr(commands);
-	free(str1);
-	return 0;
+	free(map);
 }
