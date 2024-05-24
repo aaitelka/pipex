@@ -6,15 +6,15 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:00 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/23 15:07:40 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:50:00 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-int get_size(char **arr)
+int	get_size(char **arr)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (arr && arr[len])

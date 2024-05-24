@@ -9,11 +9,15 @@ add_executable(pipex
         include/pipex_bonus.h
         include/types_bonus.h
         src/parsing_bonus.c
+        src/arr_utils_bonus.c
+        src/assert_bonus.c
         libs/libft/ft_isalpha.c
         libs/libft/ft_isdigit.c
         libs/libft/ft_isalnum.c
         libs/libft/ft_isascii.c
         libs/libft/ft_isprint.c
+        libs/libft/ft_isspace.c
+        libs/libft/ft_isquote.c
         libs/libft/ft_strlen.c
         libs/libft/ft_toupper.c
         libs/libft/ft_tolower.c

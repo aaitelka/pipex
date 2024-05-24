@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_list.c                                         :+:      :+:    :+:   */
+/*   cmd_list_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 19:49:14 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/19 19:49:14 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/24 15:30:24 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
-t_cmd	*new_cmd(char *absolute, char **opts)
+t_cmd	*new_cmd(char *absolute, char **opts, int pos)
 {
 	t_cmd	*cmd;
 
@@ -21,6 +21,7 @@ t_cmd	*new_cmd(char *absolute, char **opts)
 		return (NULL);
 	cmd->absolute = absolute;
 	cmd->opts = opts;
+	cmd->pos = pos;
 	cmd->next = NULL;
 	return (cmd);
 }
@@ -45,4 +46,21 @@ void	add_cmd(t_cmd **cmd, t_cmd *new)
 		last->next = new;
 	else
 		*cmd = new;
+}
+
+void	clear_cmd(t_cmd *cmd)
+{
+	t_cmd	*current;
+	t_cmd	*next;
+
+	if (!cmd)
+		return ;
+	current = cmd;
+	while (current)
+	{
+		next = current->next;
+		clear_arr(current->opts);
+		free(current);
+		current = next;
+	}
 }

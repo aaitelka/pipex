@@ -93,7 +93,11 @@
 				43,
 				44,
 				45,
-				46
+				46,
+				47,
+				48,
+				49,
+				50
 			]
 		}
 	],
@@ -170,7 +174,11 @@
 				43,
 				44,
 				45,
-				46
+				46,
+				47,
+				48,
+				49,
+				50
 			]
 		},
 		{
@@ -215,6 +223,18 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "src/arr_utils_bonus.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/assert_bonus.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "libs/libft/ft_isalpha.c",
 			"sourceGroupIndex" : 0
 		},
@@ -240,6 +260,18 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "libs/libft/ft_isprint.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "libs/libft/ft_isspace.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "libs/libft/ft_isquote.c",
 			"sourceGroupIndex" : 0
 		},
 		{

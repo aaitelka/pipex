@@ -1,37 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/19 19:53:17 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/24 22:02:01 by aaitelka         ###   ########.fr       */
+/*   Created: 2024/05/23 18:45:02 by aaitelka          #+#    #+#             */
+/*   Updated: 2024/05/23 18:46:44 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_TYPES_BONUS_H
-# define PIPEX_TYPES_BONUS_H
-
-# define ERR_MALLOC  "malloc failed!\n"
-# define ERR_QUOTES  "quote not closed!\n"
-
-typedef struct s_cmd
+int	ft_isspace(char c)
 {
-	char			*absolute;
-	char			**opts;
-	int				pos;
-	struct s_cmd	*next;
-}	t_cmd;
-
-typedef struct s_pipex
-{
-	t_cmd	*cmd;
-	char	*infile;
-	char	*outfile;
-	char	**envp;
-	int 	cmds;
-	int		pfd[2];
-}	t_pipex;
-
-#endif
+	return ((c >= 9 && c <= 13) || c == 32);
+}

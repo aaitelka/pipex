@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 23:18:09 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/07 00:49:54 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:06:13 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
 # include <stdarg.h>
+# include <limits.h>
 
 int		ft_isalpha(int c);
 
@@ -31,6 +31,10 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 
 int		ft_isprint(int c);
+
+int		ft_isquote(char c);
+
+int		ft_isspace(char c);
 
 int		ft_toupper(int c);
 

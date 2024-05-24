@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers_utils_bonus.c                              :+:      :+:    :+:   */
+/*   ft_isquote.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 14:26:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/23 14:40:40 by aaitelka         ###   ########.fr       */
+/*   Created: 2024/05/23 18:46:52 by aaitelka          #+#    #+#             */
+/*   Updated: 2024/05/23 18:47:31 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex_bonus.h"
-
-bool	is_quote(char c)
+int	ft_isquote(char c)
 {
 	return (c == 34 || c == 39);
-}
-
-bool	is_space(char c)
-{
-	return ((c >= 9 && c <= 13) || c == 32);
 }

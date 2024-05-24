@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:03:43 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/23 16:42:57 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:07:20 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	**add_str(char **arr, char *str, int len)
 	int		i;
 	char	**new_arr;
 
-	new_arr = malloc((len + 2 )* sizeof(char*));
+	new_arr = malloc((len + 2) * sizeof(char *));
 	assert_null(new_arr, ERR_MALLOC);
 	i = 0;
 	while (len && arr[i])
@@ -67,17 +67,17 @@ static char	**add_str(char **arr, char *str, int len)
 }
 
 static void	append_sub_quotes(char **result, char *str, int *i)
-{	
+{
 	int		len;
 	char	*sub;
 	char	*temp;
 
 	len = get_substr_len(str, *i + 1, str[*i]);
-	assert_error(len, "quote not closed\n");
+	assert_error(len, ERR_QUOTES);
 	sub = ft_substr(str, *i + 1, len);
 	assert_null(sub, ERR_MALLOC);
 	temp = *result;
-	*result = ft_strjoin( temp, sub);
+	*result = ft_strjoin(temp, sub);
 	assert_null(sub, ERR_MALLOC);
 	free(temp);
 	temp = NULL;
@@ -96,11 +96,11 @@ char	**parse_commands(char *input)
 	i = -1;
 	while (input[++i])
 	{
-		if (!is_space(input[i]) && !is_quote(input[i]))
+		if (!ft_isspace(input[i]) && !ft_isquote(input[i]))
 			result = add_char(result, input[i], (int)ft_strlen(result));
-		else if (is_quote(input[i]))
+		else if (ft_isquote(input[i]))
 			append_sub_quotes(&result, input, &i);
-		 else if (is_space(input[i]))
+		else if (ft_isspace(input[i]))
 		{
 			if (result)
 				cmds = add_str(cmds, result, get_size(cmds));
@@ -111,5 +111,5 @@ char	**parse_commands(char *input)
 	if (result)
 		cmds = add_str(cmds, result, get_size(cmds));
 	free(result);
-    return (cmds);
+	return (cmds);
 }
