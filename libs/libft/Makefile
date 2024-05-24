@@ -6,7 +6,7 @@
 #    By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 23:45:40 by aaitelka          #+#    #+#              #
-#    Updated: 2024/05/23 18:48:26 by aaitelka         ###   ########.fr        #
+#    Updated: 2024/05/24 23:45:06 by aaitelka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,11 +82,11 @@ all		:	$(NAME)
 			@$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME)	:	$(OBJS)
-			@echo "$(GREEN)==========| $(NAME) archived... |==========$(NC)"
-			$(AR) $(NAME) $(OBJS)
+			@echo "$(GREEN)$(NAME) archived...$(NC)"
+			@$(AR) $(NAME) $(OBJS)
 
 bonus	:	$(B_OBJS)
-			@echo "$(GREEN)==========| $(NAME) bonus archived... |==========$(NC)"
+			@echo "$(GREEN)$(NAME) bonus archived...$(NC)"
 			$(AR) $(NAME) $(B_OBJS)
 
 clean	:
