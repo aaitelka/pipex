@@ -73,7 +73,7 @@ static void	append_sub_quotes(char **result, char *str, int *i)
 	char	*temp;
 
 	len = get_substr_len(str, *i + 1, str[*i]);
-	assert_error(len, ERR_QUOTES);
+    assert_error(len, ERR_QUOTES);
 	sub = ft_substr(str, *i + 1, len);
 	assert_null(sub, ERR_MALLOC);
 	temp = *result;

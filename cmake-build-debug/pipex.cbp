@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pipex"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/halem/pipex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pipex">
+				<Option output="/home/halem/pipex/cmake-build-debug/pipex" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/halem/pipex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/13/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 pipex"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pipex/fast">
+				<Option output="/home/halem/pipex/cmake-build-debug/pipex" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/halem/pipex/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/13/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 pipex/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/halem/pipex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/halem/pipex/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/home/halem/pipex/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/halem/pipex/include/pipex_bonus.h">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/include/types_bonus.h">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_atoi.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_bzero.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_calloc.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isalnum.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isalpha.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isascii.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isdigit.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isprint.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isquote.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_isspace.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_itoa.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_memchr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_memcmp.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_memcpy.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_memmove.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_memset.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_printf.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_putchar_fd.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_putendl_fd.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_putnbr_fd.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_putstr_fd.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_split.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strchr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strcmp.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strdup.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_striteri.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strjoin.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strlcat.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strlcpy.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strlen.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strmapi.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strncmp.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strnstr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strrchr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_strtrim.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_substr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_tolower.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/ft_toupper.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/get_next_line.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/get_next_line_utils.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/src/put_char.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/src/put_hex.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/src/put_nbr.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/libs/libft/src/put_str.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/main_bonus.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/src/arr_utils_bonus.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/src/assert_bonus.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/src/cmd_list_bonus.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/src/parsing_bonus.c">
+			<Option target="pipex"/>
+		</Unit>
+		<Unit filename="/home/halem/pipex/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

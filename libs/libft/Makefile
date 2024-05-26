@@ -87,12 +87,12 @@ $(NAME)	:	$(OBJS)
 
 bonus	:	$(B_OBJS)
 			@echo "$(GREEN)$(NAME) bonus archived...$(NC)"
-			$(AR) $(NAME) $(B_OBJS)
+			@$(AR) $(NAME) $(B_OBJS)
 
 clean	:
-			$(RM) $(OBJS) $(B_OBJS)
+			@$(RM) $(OBJS) $(B_OBJS)
 
 fclean	:	clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re		:	fclean all

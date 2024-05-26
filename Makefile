@@ -26,6 +26,8 @@ SRCS	:=	main_bonus.c \
 			src/parsing_bonus.c \
 			src/cmd_list_bonus.c \
 			src/arr_utils_bonus.c \
+			src/executing_bonus.c  \
+			src/pipex_utils_bonus.c \
 
 OBJS	:=	$(SRCS:%.c=%.o)
 

@@ -22,12 +22,12 @@ void	assert_null(void *any, char *msg)
 	}
 }
 
-void	assert_error(int errno, char *msg)
+void	assert_error(int err, char *msg)
 {
-	if (errno == -1)
+	if (err == -1)
 	{
-		ft_putstr_fd("Error: ", STDERR_FILENO);
-		ft_putstr_fd(msg, STDERR_FILENO);
+        ft_putstr_fd("pipex: ", STDERR_FILENO);
+        perror(msg);
 		exit(EXIT_FAILURE);
 	}
 }

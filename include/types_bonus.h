@@ -15,11 +15,16 @@
 
 # define ERR_MALLOC  "malloc failed!\n"
 # define ERR_QUOTES  "quote not closed!\n"
+# define ERR_WAITPID "wait pid failed\n"
+# define ERR_PIPING "error piping\n"
+# define ERR_FORKING "error fork new process\n"
+# define ERR_CLOSE_FD "error closing fd\n"
+# define ERR_DUP_FD "error when duplicating fd\n"
 
 typedef struct s_cmd
 {
 	char			*absolute;
-	char			**opts;
+	char			**args;
 	int				pos;
 	struct s_cmd	*next;
 }	t_cmd;

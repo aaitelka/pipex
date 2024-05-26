@@ -20,7 +20,7 @@ t_cmd	*new_cmd(char *absolute, char **opts, int pos)
 	if (!cmd)
 		return (NULL);
 	cmd->absolute = absolute;
-	cmd->opts = opts;
+	cmd->args = opts;
 	cmd->pos = pos;
 	cmd->next = NULL;
 	return (cmd);
@@ -59,7 +59,7 @@ void	clear_cmd(t_cmd *cmd)
 	while (current)
 	{
 		next = current->next;
-		clear_arr(current->opts);
+		clear_arr(current->args);
 		free(current);
 		current = next;
 	}
