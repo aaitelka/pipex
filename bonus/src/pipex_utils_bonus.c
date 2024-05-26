@@ -6,13 +6,11 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:05:07 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:32:42 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:42:38 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
-
-#include "../include/pipex.h"
 
 static char	*get_path(char **ep)
 {

@@ -6,7 +6,7 @@
 #    By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/24 22:36:23 by aaitelka          #+#    #+#              #
-#    Updated: 2024/05/26 19:33:46 by aaitelka         ###   ########.fr        #
+#    Updated: 2024/05/26 22:55:53 by aaitelka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ B_NAME	:= pipex_bonus
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 LIBFT 	:= ./libs/libft
-HEADS := -I ./mandatory/include -I $(LIBFT)
+HEADS := -I ./mandatory/include/pipex.h -I $(LIBFT)/libft.h
+B_HEADS := -I ./bonus/include/pipex_bonus.h -I $(LIBFT)/libft.h
 LIBS := $(LIBFT)/libft.a
 
 SRCS	:=	mandatory/main.c \
@@ -44,7 +45,7 @@ B_OBJS	:=	$(B_SRCS:%_bonus.c=%_bonus.o)
 
 all : libft $(NAME)
 
-%.o : %.c
+%.o : %.c $(HEADS)
 	@echo "$(GREEN)Generate : $@"
 	@$(CC) $(CFLAGS) $(HEADS) -o $@ -c $<
 
@@ -55,9 +56,11 @@ $(NAME) : $(OBJS)
 	@echo "$(GREEN)Linking $@ executable...$(NC)"
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@
 
-%_bonus.o : %_bonus.c
+%_bonus.o : %_bonus.c $(B_HEADS)
 	@echo "$(GREEN)Generate bonus: $@"
-	@$(CC) $(CFLAGS) $(HEADS) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(B_HEADS) -o $@ -c $<
+
+bonus : libft $(B_NAME)
 
 $(B_NAME) : $(B_OBJS)
 	@echo "$(GREEN)Linking $@ executable...$(NC)"
@@ -66,12 +69,12 @@ $(B_NAME) : $(B_OBJS)
 clean :
 	@echo "$(RED) $@...$(NC)"
 	@$(MAKE) --no-print-directory -C $(LIBFT) clean
-	@$(RM) $(OBJS) #$(B_OBJS)
+	@$(RM) $(OBJS) $(B_OBJS)
 
 fclean : clean
 	@echo "$(RED)Full $<...$(NC)"
 	@$(MAKE) --no-print-directory -C $(LIBFT) fclean
 	@echo "$(RED)rm -f pipex$(NC)"
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(B_NAME)
 
 re : fclean all

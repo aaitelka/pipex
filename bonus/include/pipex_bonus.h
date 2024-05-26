@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 19:49:39 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:23:24 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:49:44 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,34 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <sys/wait.h>
-# include "pipex_types_bonus.h"
 # include "../../libs/libft/libft.h"
+
+# define ERR_ARGS "pipex: option requires args ./pipex inf cmd1 cmdn outf\n"
+# define ERR_MALLOC  "malloc failed!\n"
+# define ERR_QUOTES  "quote not closed!\n"
+# define ERR_WAITPID "wait pid failed\n"
+# define ERR_PIPING "error piping\n"
+# define ERR_FORKING "error fork new process\n"
+# define ERR_CLOSE_FD "error closing fd\n"
+# define ERR_DUP_FD "error when duplicating fd\n"
+
+typedef struct s_cmd
+{
+	char			*absolute;
+	char			**args;
+	int				pos;
+	struct s_cmd	*next;
+}	t_cmd;
+
+typedef struct s_pipex
+{
+	t_cmd	*cmd;
+	char	*infile;
+	char	*outfile;
+	char	**envp;
+	int		cmds;
+	int		pfd[2];
+}	t_pipex;
 
 t_cmd	*last_cmd(t_cmd *cmd);
 t_cmd	*new_cmd(char *absolute, char **opts, int pos);

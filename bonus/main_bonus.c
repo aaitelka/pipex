@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:35:56 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:43:59 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int ac, char **av, char **ep)
 {
 	t_pipex	pipex;
 
-	if (ac > 5)
+	if (ac >= 5)
 	{
 		init_pipex(&pipex, ac, av, ep);
 		execute(&pipex);
