@@ -1,0 +1,12 @@
+CMakeLists.txt
+Makefile
+a.out.dSYM
+cmake-build-debug
+include
+libs
+main_bonus.c
+main_bonus.o
+outfile
+pipex
+src
+test

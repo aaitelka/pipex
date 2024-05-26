@@ -6,11 +6,11 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:03:43 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:37:31 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 22:32:25 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 static int	get_substr_len(char *str, int start, char c)
 {
@@ -58,11 +58,11 @@ static char	**add_str(char **arr, char *str, int len)
 	while (len && arr[i])
 	{
 		new_arr[i] = ft_strdup(arr[i]);
-		assert_nul(new_arr[i], ERR_MALLOC);
+		assert_null(new_arr[i], ERR_MALLOC);
 		i++;
 	}
 	new_arr[i] = ft_strdup(str);
-	assert_nul(new_arr[i], ERR_MALLOC);
+	assert_null(new_arr[i], ERR_MALLOC);
 	new_arr[i + 1] = NULL;
 	clear_arr(arr);
 	return (new_arr);
