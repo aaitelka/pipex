@@ -26,7 +26,7 @@ static int	has_slash(char *cmd)
 	return (0);
 }
 
-static void	run_first(t_pipex *pipex, t_cmd *cmd, bool hrdc)
+static void	run_first(t_pipex *pipex, t_cmd *cmd, bool here_dc)
 {
 	pid_t	pid;
 	int		fd;
@@ -36,13 +36,16 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd, bool hrdc)
 	assert_error(pid, ERR_FORKING);
 	if (pid == 0)
 	{
-		if (hrdc)
-			fd = pipex->hrdc_fd;
+		if (here_dc)
+        {
+            fd = pipex->hrdc_fd;
+            cmd = cmd->next;
+        }
 		else
-			fd = open(pipex->infile, O_RDONLY);
-		assert_error(fd, pipex->infile);
-		assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
-		assert_error(close(fd), ERR_CLOSE_FD);
+            fd = open(pipex->infile, O_RDONLY);
+        assert_error(fd, pipex->infile);
+        assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
+        assert_error(close(fd), ERR_CLOSE_FD);
 		if (has_slash(cmd->args[0]))
 		{
 			absolute = ft_strdup(cmd->args[0]);
@@ -103,7 +106,7 @@ static void	run_last(t_pipex *pipex, t_cmd *cmd)
 	}
 }
 
-void	execute(t_pipex *pipex, bool hrdc)
+void	execute(t_pipex *pipex, bool here_doc)
 {
 	t_cmd	*cmd;
 
@@ -118,7 +121,7 @@ void	execute(t_pipex *pipex, bool hrdc)
 		if (cmd->next)
 			assert_error(pipe(pipex->pfd), ERR_PIPING);
 		if (!(cmd->pos))
-			run_first(pipex, cmd, hrdc);
+			run_first(pipex, cmd, here_doc);
 		else if (!(cmd->next))
 			run_last(pipex, cmd);
 		else
