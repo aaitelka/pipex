@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:07:12 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:37:08 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 23:54:49 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	has_slash(char *cmd)
 	return (0);
 }
 
-static void	run_first(t_pipex *pipex, t_cmd *cmd)
+static void	run_first(t_pipex *pipex, t_cmd *cmd, bool hrdc)
 {
 	pid_t	pid;
 	int		fd;
@@ -36,7 +36,10 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd)
 	assert_error(pid, ERR_FORKING);
 	if (pid == 0)
 	{
-		fd = open(pipex->infile, O_RDONLY);
+		if (hrdc)
+			fd = pipex->hrdc_fd;
+		else
+			fd = open(pipex->infile, O_RDONLY);
 		assert_error(fd, pipex->infile);
 		assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
 		assert_error(close(fd), ERR_CLOSE_FD);
@@ -100,7 +103,7 @@ static void	run_last(t_pipex *pipex, t_cmd *cmd)
 	}
 }
 
-void	execute(t_pipex *pipex)
+void	execute(t_pipex *pipex, bool hrdc)
 {
 	t_cmd	*cmd;
 
@@ -115,7 +118,7 @@ void	execute(t_pipex *pipex)
 		if (cmd->next)
 			assert_error(pipe(pipex->pfd), ERR_PIPING);
 		if (!(cmd->pos))
-			run_first(pipex, cmd);
+			run_first(pipex, cmd, hrdc);
 		else if (!(cmd->next))
 			run_last(pipex, cmd);
 		else

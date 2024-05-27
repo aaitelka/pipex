@@ -6,7 +6,7 @@
 #    By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/24 22:36:23 by aaitelka          #+#    #+#              #
-#    Updated: 2024/05/26 22:55:53 by aaitelka         ###   ########.fr        #
+#    Updated: 2024/05/26 23:02:56 by aaitelka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ B_NAME	:= pipex_bonus
 CC		:=	cc
 CFLAGS	:=	-Wall -Wextra -Werror
 LIBFT 	:= ./libs/libft
-HEADS := -I ./mandatory/include/pipex.h -I $(LIBFT)/libft.h
-B_HEADS := -I ./bonus/include/pipex_bonus.h -I $(LIBFT)/libft.h
+HEADS := -I ./mandatory/include -I $(LIBFT)
+B_HEADS := -I ./bonus/include -I $(LIBFT)
 LIBS := $(LIBFT)/libft.a
 
 SRCS	:=	mandatory/main.c \
@@ -47,7 +47,7 @@ all : libft $(NAME)
 
 %.o : %.c $(HEADS)
 	@echo "$(GREEN)Generate : $@"
-	@$(CC) $(CFLAGS) $(HEADS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 libft:
 	@$(MAKE) --no-print-directory -C $(LIBFT) -j4

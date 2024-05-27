@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 22:43:59 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/26 23:55:54 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,48 @@ void	wait_child(t_pipex *pipex)
 	}
 }
 
+void	here_doc(t_pipex *pipex)
+{
+	int		wfd;
+	int		rfd;
+	char	*buffer;
+	char	*limiter;
+
+	wfd = open("here_doc", O_WRONLY);
+	rfd = open("here_doc", O_RDONLY);
+	unlink("here_doc");
+	limiter = pipex->cmd->args[0];
+	limiter = ft_strjoin(limiter, "\n");
+	buffer = get_next_line(STDIN_FILENO);
+	while (buffer)
+	{
+		if (!ft_strcmp(buffer, limiter))
+			break ;
+		printf("-----%s\n", buffer);
+		write(wfd, buffer, ft_strlen(buffer));
+		buffer = get_next_line(STDIN_FILENO);
+		if (!buffer)
+			break ;
+	}
+	pipex->hrdc_fd = rfd;
+	close(wfd);
+}
+
 int	main(int ac, char **av, char **ep)
 {
 	t_pipex	pipex;
 
 	if (ac >= 5)
 	{
+		//here_doc
 		init_pipex(&pipex, ac, av, ep);
-		execute(&pipex);
+		if (!ft_strcmp(av[1], "here_doc"))
+		{	
+			here_doc(&pipex);
+			execute(&pipex, true);
+		}
+		else
+			execute(&pipex, false);
 		wait_child(&pipex);
 		clear_cmd(pipex.cmd);
 	}
