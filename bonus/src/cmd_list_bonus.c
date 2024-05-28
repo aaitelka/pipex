@@ -21,7 +21,7 @@ t_cmd	*new_cmd(char *absolute, char **opts, int pos)
 		return (NULL);
 	cmd->absolute = absolute;
 	cmd->args = opts;
-	cmd->pos = pos;
+	cmd->cmd_pos = pos;
 	cmd->next = NULL;
 	return (cmd);
 }

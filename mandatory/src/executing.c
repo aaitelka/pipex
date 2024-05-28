@@ -47,6 +47,7 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd)
 		}
 		else
 			absolute = get_absolute(pipex->envp, cmd->args[0]);
+        assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		assert_error(dup2(pipex->pfd[1], STDOUT_FILENO), ERR_DUP_FD);
 		assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		assert_error(execve(absolute, cmd->args, pipex->envp), cmd->args[0]);
@@ -85,18 +86,18 @@ void	execute(t_pipex *pipex)
 	cmd = pipex->cmd;
 	while (cmd)
 	{
-		if (cmd->pos)
+		if (cmd->cmd_pos > 0)
 		{
 			assert_error(dup2(pipex->pfd[0], STDIN_FILENO), ERR_DUP_FD);
 			assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		}
-		if (cmd->next)
+		if (cmd->next != NULL)
 			assert_error(pipe(pipex->pfd), ERR_PIPING);
-		if (!(cmd->pos))
+		if (cmd->cmd_pos == 0)
 			run_first(pipex, cmd);
-		else if (!(cmd->next))
+		else if (cmd->next == NULL)
 			run_last(pipex, cmd);
-		if (cmd->next)
+        if (cmd->next != NULL)
 			assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		cmd = cmd->next;
 	}

@@ -36,7 +36,7 @@ typedef struct s_cmd
 {
 	char			*absolute;
 	char			**args;
-	int				pos;
+	int				cmd_pos;
 	struct s_cmd	*next;
 }	t_cmd;
 

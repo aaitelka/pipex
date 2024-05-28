@@ -116,20 +116,20 @@ void	execute(t_pipex *pipex, bool here_doc)
 	cmd = pipex->cmd;
 	while (cmd)
 	{
-		if (cmd->pos)
+		if (cmd->cmd_pos > 0)
 		{
 			assert_error(dup2(pipex->pfd[0], STDIN_FILENO), ERR_DUP_FD);
 			assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		}
-		if (cmd->next)
+		if (cmd->next != NULL)
 			assert_error(pipe(pipex->pfd), ERR_PIPING);
-		if (!(cmd->pos))
+		if (cmd->cmd_pos == 0)
 			run_first(pipex, cmd, here_doc);
-		else if (!(cmd->next))
+		else if (cmd->next == NULL)
 			run_last(pipex, cmd, here_doc);
 		else
 			run_next(pipex, cmd);
-		if (cmd->next)
+        if (cmd->next != NULL)
 			assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		cmd = cmd->next;
 	}
