@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 23:55:54 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:17:02 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	here_doc(t_pipex *pipex)
         free(buffer);
 		buffer = get_next_line(STDIN_FILENO);
 	}
+	free(buffer);
+	free(limiter);
 	close(wfd);
     rfd = open("here_doc", O_RDONLY);
     pipex->hrdc_fd = dup(rfd);
@@ -81,7 +83,6 @@ int	main(int ac, char **av, char **ep)
 		init_pipex(&pipex, ac, av, ep);
 		if (!ft_strcmp(av[1], "here_doc"))
 		{
-            printf("here doc\n");
 			here_doc(&pipex);
 			execute(&pipex, true);
 		}

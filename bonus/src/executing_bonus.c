@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:07:12 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 23:54:49 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:58:34 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	run_next(t_pipex *pipex, t_cmd *cmd)
 	}
 }
 
-static void	run_last(t_pipex *pipex, t_cmd *cmd)
+static void	run_last(t_pipex *pipex, t_cmd *cmd, bool here_dc)
 {
 	pid_t	pid;
 	int		fd;
@@ -91,7 +91,10 @@ static void	run_last(t_pipex *pipex, t_cmd *cmd)
 	assert_error(pid, ERR_FORKING);
 	if (pid == 0)
 	{
-		fd = open(pipex->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		if (here_dc)
+			fd = open(pipex->outfile, O_WRONLY | O_CREAT | O_APPEND, 0777);
+		else
+			fd = open(pipex->outfile, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 		assert_error(fd, pipex->outfile);
 		if (has_slash(cmd->args[0]))
 		{
@@ -123,7 +126,7 @@ void	execute(t_pipex *pipex, bool here_doc)
 		if (!(cmd->pos))
 			run_first(pipex, cmd, here_doc);
 		else if (!(cmd->next))
-			run_last(pipex, cmd);
+			run_last(pipex, cmd, here_doc);
 		else
 			run_next(pipex, cmd);
 		if (cmd->next)
