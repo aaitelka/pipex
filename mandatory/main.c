@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 16:57:57 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/28 15:16:55 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:29:00 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_pipex(t_pipex *pipex, int ac, char **av, char **ep)
 	while (av[i] && i < (ac - 1))
 	{
 		opts = parse_commands(av[i]);
-		new = new_cmd(NULL, opts, i - 2);
+		new = new_cmd(opts, i - 2);
 		assert_null(new, ERR_MALLOC);
 		add_cmd(&pipex->cmd, new);
 		i++;
@@ -61,6 +61,9 @@ int	main(int ac, char **av, char **ep)
 		clear_cmd(pipex.cmd);
 	}
 	else
+	{
 		ft_putstr_fd(ERR_ARGS, STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
 	exit(EXIT_SUCCESS);
 }

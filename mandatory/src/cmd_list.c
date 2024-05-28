@@ -6,20 +6,19 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 19:49:14 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 19:37:33 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:27:59 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-t_cmd	*new_cmd(char *absolute, char **opts, int pos)
+t_cmd	*new_cmd(char **opts, int pos)
 {
 	t_cmd	*cmd;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	cmd->absolute = absolute;
 	cmd->args = opts;
 	cmd->cmd_pos = pos;
 	cmd->next = NULL;

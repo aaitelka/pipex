@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 19:49:39 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/26 23:55:13 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:28:24 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 
 typedef struct s_cmd
 {
-	char			*absolute;
 	char			**args;
 	int				cmd_pos;
 	struct s_cmd	*next;
@@ -45,6 +44,7 @@ typedef struct s_pipex
 	t_cmd			*cmd;
 	char			*infile;
 	char			*outfile;
+	char			*limiter;
 	char			*hd_name;
 	char			**envp;
 	int				cmds;
@@ -54,7 +54,7 @@ typedef struct s_pipex
 }					t_pipex;
 
 t_cmd				*last_cmd(t_cmd *cmd);
-t_cmd				*new_cmd(char *absolute, char **opts, int pos);
+t_cmd				*new_cmd(char **opts, int pos);
 void				add_cmd(t_cmd **cmd, t_cmd *new);
 void				clear_cmd(t_cmd *cmd);
 void				execute(t_pipex *pipex, bool hrdc);

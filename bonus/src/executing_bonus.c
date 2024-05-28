@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:07:12 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/28 14:58:34 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:10:05 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,17 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd, bool here_dc)
 	if (pid == 0)
 	{
 		if (here_dc)
-		{
 			fd = pipex->hrdc_fd;
-			cmd = cmd->next;
-		}
 		else
 			fd = open(pipex->infile, O_RDONLY);
 		assert_error(fd, pipex->infile);
 		assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
 		assert_error(close(fd), ERR_CLOSE_FD);
 		if (has_slash(cmd->args[0]))
-		{
 			absolute = ft_strdup(cmd->args[0]);
-			assert_null(absolute, ERR_MALLOC);
-		}
 		else
 			absolute = get_absolute(pipex->envp, cmd->args[0]);
+		assert_null(absolute, ERR_MALLOC);
 		assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		assert_error(dup2(pipex->pfd[1], STDOUT_FILENO), ERR_DUP_FD);
 		assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);

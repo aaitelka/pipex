@@ -6,7 +6,7 @@
 /*   By: aaitelka <aaitelka@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:07:12 by aaitelka          #+#    #+#             */
-/*   Updated: 2024/05/28 15:13:45 by aaitelka         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:23:18 by aaitelka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	execute(t_pipex *pipex)
 			run_first(pipex, cmd);
 		else if (cmd->next == NULL)
 			run_last(pipex, cmd);
-        if (cmd->next != NULL)
+		if (cmd->next != NULL)
 			assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		cmd = cmd->next;
 	}
