@@ -37,15 +37,15 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd, bool here_dc)
 	if (pid == 0)
 	{
 		if (here_dc)
-        {
-            fd = pipex->hrdc_fd;
-            cmd = cmd->next;
-        }
+		{
+			fd = pipex->hrdc_fd;
+			cmd = cmd->next;
+		}
 		else
-            fd = open(pipex->infile, O_RDONLY);
-        assert_error(fd, pipex->infile);
-        assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
-        assert_error(close(fd), ERR_CLOSE_FD);
+			fd = open(pipex->infile, O_RDONLY);
+		assert_error(fd, pipex->infile);
+		assert_error(dup2(fd, STDIN_FILENO), ERR_DUP_FD);
+		assert_error(close(fd), ERR_CLOSE_FD);
 		if (has_slash(cmd->args[0]))
 		{
 			absolute = ft_strdup(cmd->args[0]);
@@ -53,6 +53,7 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd, bool here_dc)
 		}
 		else
 			absolute = get_absolute(pipex->envp, cmd->args[0]);
+		assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		assert_error(dup2(pipex->pfd[1], STDOUT_FILENO), ERR_DUP_FD);
 		assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		assert_error(execve(absolute, cmd->args, pipex->envp), cmd->args[0]);
@@ -75,6 +76,7 @@ static void	run_next(t_pipex *pipex, t_cmd *cmd)
 		}
 		else
 			absolute = get_absolute(pipex->envp, cmd->args[0]);
+		assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		assert_error(dup2(pipex->pfd[1], STDOUT_FILENO), ERR_DUP_FD);
 		assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		assert_error(execve(absolute, cmd->args, pipex->envp), cmd->args[0]);
@@ -129,7 +131,7 @@ void	execute(t_pipex *pipex, bool here_doc)
 			run_last(pipex, cmd, here_doc);
 		else
 			run_next(pipex, cmd);
-        if (cmd->next != NULL)
+		if (cmd->next != NULL)
 			assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		cmd = cmd->next;
 	}

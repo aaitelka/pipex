@@ -47,7 +47,7 @@ static void	run_first(t_pipex *pipex, t_cmd *cmd)
 		}
 		else
 			absolute = get_absolute(pipex->envp, cmd->args[0]);
-        assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
+		assert_error(close(pipex->pfd[0]), ERR_CLOSE_FD);
 		assert_error(dup2(pipex->pfd[1], STDOUT_FILENO), ERR_DUP_FD);
 		assert_error(close(pipex->pfd[1]), ERR_CLOSE_FD);
 		assert_error(execve(absolute, cmd->args, pipex->envp), cmd->args[0]);

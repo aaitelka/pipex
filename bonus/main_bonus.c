@@ -62,16 +62,16 @@ void	here_doc(t_pipex *pipex)
 		if (!ft_strcmp(buffer, limiter))
 			break ;
 		write(wfd, buffer, ft_strlen(buffer));
-        free(buffer);
+		free(buffer);
 		buffer = get_next_line(STDIN_FILENO);
 	}
 	free(buffer);
 	free(limiter);
 	close(wfd);
-    rfd = open("here_doc", O_RDONLY);
-    pipex->hrdc_fd = dup(rfd);
+	rfd = open("here_doc", O_RDONLY);
+	pipex->hrdc_fd = dup(rfd);
 	unlink("here_doc");
-    close(rfd);
+	close(rfd);
 }
 
 int	main(int ac, char **av, char **ep)
@@ -80,6 +80,7 @@ int	main(int ac, char **av, char **ep)
 
 	if (ac >= 5)
 	{
+		pipex.stdin_fd = dup(STDIN_FILENO);
 		init_pipex(&pipex, ac, av, ep);
 		if (!ft_strcmp(av[1], "here_doc"))
 		{
@@ -88,6 +89,9 @@ int	main(int ac, char **av, char **ep)
 		}
 		else
 			execute(&pipex, false);
+		
+		dup2(pipex.stdin_fd, STDIN_FILENO);
+		close(pipex.stdin_fd);
 		wait_child(&pipex);
 		clear_cmd(pipex.cmd);
 	}

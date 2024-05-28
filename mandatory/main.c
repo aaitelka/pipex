@@ -52,8 +52,11 @@ int	main(int ac, char **av, char **ep)
 
 	if (ac == 5)
 	{
+		pipex.stdin_fd = dup(STDIN_FILENO);
 		init_pipex(&pipex, ac, av, ep);
 		execute(&pipex);
+		dup2(pipex.stdin_fd, STDIN_FILENO);
+		close(pipex.stdin_fd);
 		wait_child(&pipex);
 		clear_cmd(pipex.cmd);
 	}

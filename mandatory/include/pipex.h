@@ -47,6 +47,7 @@ typedef struct s_pipex
 	char	*outfile;
 	char	**envp;
 	int		cmds;
+	int		stdin_fd;
 	int		pfd[2];
 }	t_pipex;
 
